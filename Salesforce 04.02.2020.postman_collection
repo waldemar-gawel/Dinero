@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "ef3c36e9-28a7-4443-97fa-eee0f45b25fb",
+		"name": "Salesforce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get access token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e6429c3d-5408-4edc-b887-49db4e01121b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4460d60d-9a48-4e36-a4fc-013a24b97713",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "zc4@bec.dk.nyk.dinv",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Bz9a7b00",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "3MVG95AcBeaB55lWxQTUAv_oSjgUowXLT1SVp0.2xY9oadW8Mxag_zhzlivbRDDegqLsoQiluM86RuygH8ka3",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "5378EF75D97A39F9F20BD31AE79E95BABFC71FB510B3AC9A6A5E2A3992992734",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://nyk--dinv.my.salesforce.com/services/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"nyk--dinv",
+						"my",
+						"salesforce",
+						"com"
+					],
+					"path": [
+						"services",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "Get access token and store it in 'token' variable"
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of available flow",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bcde8f0b-b876-48a8-86de-4ee8f832a34a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b893559-298d-4ac1-afe4-9336655baf68",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access_token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 00D1j0000000mDb!AQkAQARmmQOcLjJnaXs0ND8SOQkBXoJIizzKUX.rYBeTKzl_PQ.9Zi_oWJSXVVlmlAELo4poFKFc.r65WkoRCuIQgXcDlEPl",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://nyk--dinv.my.salesforce.com/services/data/v47.0/actions/custom/flow/Postman4Apex",
+					"protocol": "https",
+					"host": [
+						"nyk--dinv",
+						"my",
+						"salesforce",
+						"com"
+					],
+					"path": [
+						"services",
+						"data",
+						"v47.0",
+						"actions",
+						"custom",
+						"flow",
+						"Postman4Apex"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoke test flow",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access_token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer 00D1j0000000mDb!AQkAQARmmQOcLjJnaXs0ND8SOQkBXoJIizzKUX.rYBeTKzl_PQ.9Zi_oWJSXVVlmlAELo4poFKFc.r65WkoRCuIQgXcDlEPl",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"inputs\" : [ {\r\n   \"InputNumber\":\"000\"\r\n   } \r\n   ]\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://nyk--dinv.my.salesforce.com/services/data/v47.0/actions/custom/flow/Postman4Apex",
+					"protocol": "https",
+					"host": [
+						"nyk--dinv",
+						"my",
+						"salesforce",
+						"com"
+					],
+					"path": [
+						"services",
+						"data",
+						"v47.0",
+						"actions",
+						"custom",
+						"flow",
+						"Postman4Apex"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5b3dd127-022b-409c-bf5b-9dc5a71e3562",
+				"type": "text/javascript",
+				"exec": [
+					"const authRequest = {",
+					"  url: 'https://nyk--dinv.my.salesforce.com/services/oauth2/token',",
+					"  method: 'POST',",
+					"  body: {",
+					"    mode: 'urlencoded',",
+					"    urlencoded: [",
+					"    \t{key: 'grant_type', value: 'password'},",
+					"    \t{key: 'client_id', value: '3MVG95AcBeaB55lWxQTUAv_oSjgUowXLT1SVp0.2xY9oadW8Mxag_zhzlivbRDDegqLsoQiluM86RuygH8ka3'},",
+					"    \t{key: 'client_secret', value: '5378EF75D97A39F9F20BD31AE79E95BABFC71FB510B3AC9A6A5E2A3992992734'},",
+					"    \t{key: 'username', value: pm.environment.get('username')},",
+					"    \t{key: 'password', value: pm.environment.get('password') + pm.environment.get('security_token')}",
+					"    ]",
+					"  }",
+					"};",
+					"",
+					"pm.sendRequest(authRequest, function (err, res) {",
+					"    console.log(err ? err : res.json());",
+					"    if (err === null) {",
+					"        pm.environment.set(\"access_token\", res.json().access_token);",
+					"    }",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "13536836-a158-4e5c-b815-243f4ff6f9e5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "808c6c2a-fa6a-450d-a0c7-11afcc5f59d5",
+			"key": "Auth_Url",
+			"value": " https://test.salesforce.com/services/oauth2/token",
+			"type": "string"
+		},
+		{
+			"id": "56aee2f3-eda8-4620-8f7a-07bc603ab5cf",
+			"key": "Basic_Auth",
+			"value": "password",
+			"type": "string"
+		}
+	]
+}
